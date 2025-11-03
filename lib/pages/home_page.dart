@@ -1,10 +1,10 @@
 import 'package:currency_converter/pages/another_page.dart';
+import 'package:currency_converter/widgets/hotel_card.dart';
+import 'package:currency_converter/models/hotel.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  final int cost = 2359;
 
   @override
   Widget build(BuildContext context) {
@@ -25,63 +25,20 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  // horizontal hotel list
                   Container(
-                    height: 200,
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(),
-                    child: Image.asset("assets/room.jpg"),
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Hotel Yuvraj Deluxe",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Icon(Icons.star_rounded, color: Colors.amber, size: 16),
-                      Icon(Icons.star_rounded, color: Colors.amber, size: 16),
-                      Icon(Icons.star_rounded, color: Colors.amber, size: 16),
-                    ],
-                  ),
-                  Text(
-                    "Vijayawada",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey,
+                    height: 300,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: sampleHotels.length,
+                      itemBuilder: (context, idx) {
+                        final hotel = sampleHotels[idx];
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: HotelCard(hotel: hotel),
+                        );
+                      },
                     ),
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent.shade100.withValues(
-                            alpha: 0.25,
-                          ),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          "7.0",
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Text("Very Good", style: TextStyle(color: Colors.blue)),
-                      SizedBox(width: 8),
-                      Text("67 Ratings", style: TextStyle(color: Colors.grey)),
-                      Spacer(),
-                      Text(
-                        r"$2384",
-                        style: TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                    ],
                   ),
                   SizedBox(height: 100),
                   BackButton(),
@@ -91,12 +48,10 @@ class HomePage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       foregroundColor: Colors.blue,
-                      backgroundColor: Colors.blue.shade300.withValues(
-                        alpha: 0.25,
-                      ),
+                      backgroundColor: Colors.blue.shade300.withOpacity(0.25),
                     ),
                     child: Text("Press me!"),
                   ),
@@ -112,12 +67,10 @@ class HomePage extends StatelessWidget {
                   TextButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(6),
+                        borderRadius: BorderRadius.circular(6),
                       ),
                       foregroundColor: Colors.blue,
-                      backgroundColor: Colors.blue.shade300.withValues(
-                        alpha: 0.25,
-                      ),
+                      backgroundColor: Colors.blue.shade300.withOpacity(0.25),
                     ),
                     onPressed: () {
                       // NAVIGATE TO ANOTHER PAGE
